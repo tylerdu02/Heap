@@ -124,3 +124,29 @@ int main() {
   }  
   return 0;
 }
+
+void sort(int* heap, int count) { // sort so numbers go from big to small
+  for (int current = 0; current < count - 1; current++) { 
+    for (int next = current + 1; next < count; next++) { 
+      if (heap[current] < heap[next]) { 
+        int temp = heap[current];
+        heap[current] = heap[next];
+        heap[next] = temp;
+      }
+    }
+  }
+}
+
+void print(int* heap, int temp, int indent) { // prints the tree 
+  if (heap[temp] == 0) { 
+    return;
+  }
+  indent += 10; 
+  print(heap, temp * 2 + 1, indent); 
+  cout << "\n" << endl; 
+  for (int i = 10; i < indent; i++) { 
+    cout << " ";
+  }
+  cout << heap[temp] << "\n"; 
+  print(heap, temp * 2 + 2, indent);
+}
